@@ -1,13 +1,44 @@
+/* Animated gradient background */
+@keyframes moveGradient {
+    0%, 100% {
+        background-position: 0% 50%;
+    }
+    50% {
+        background-position: 100% 50%;
+    }
+}
+
 body {
     margin: 0;
     padding: 0;
-    background-color: rgb(10, 10, 10);
+    background-color: rgb(0, 0, 0);
     color: rgb(240, 240, 240);
     display: flex;
     align-items: center;
     flex-direction: column;
     width: 100vw;
+    min-height: 100vh;
     font-family: Verdana, Geneva, Tahoma, sans-serif;
+    position: relative;
+    overflow-x: hidden;
+}
+
+body::before {
+    content: '';
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background:
+        radial-gradient(circle at 20% 30%, rgba(138, 43, 226, 0.15) 0%, transparent 50%),
+        radial-gradient(circle at 80% 20%, rgba(0, 191, 255, 0.12) 0%, transparent 50%),
+        radial-gradient(circle at 40% 70%, rgba(255, 20, 147, 0.1) 0%, transparent 50%),
+        radial-gradient(circle at 90% 80%, rgba(0, 255, 127, 0.08) 0%, transparent 50%),
+        radial-gradient(circle at 10% 90%, rgba(255, 215, 0, 0.1) 0%, transparent 50%);
+    background-size: 200% 200%;
+    z-index: -1;
+    animation: moveGradient 20s ease infinite;
 }
 
 header {
@@ -17,19 +48,30 @@ header {
     justify-content: flex-end;
     padding: 12px;
     margin-top: 15px;
+    position: relative;
+    z-index: 10;
 }
 
 .share-button {
     width: 40px;
     height: 40px;
     border-radius: 20px;
-    background-color: rgb(240, 240, 240);
+    background: rgba(240, 240, 240, 0.1);
+    backdrop-filter: blur(10px);
+    border: 1px solid rgba(255, 255, 255, 0.18);
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+.share-button:hover {
+    background: rgba(240, 240, 240, 0.2);
+    transform: translateY(-2px);
 }
 
 .share-button svg {
     margin-left: 12px;
     margin-top: 10px;
-    color: black;
+    color: rgb(240, 240, 240);
 }
 
 .container {
@@ -39,20 +81,27 @@ header {
     display: flex;
     flex-direction: column;
     align-items: center;
+    position: relative;
+    z-index: 10;
 }
 
 .tile {
     width: 100%;
-    background-color: rgb(37, 37, 37);
+    background: rgba(37, 37, 37, 0.4);
+    backdrop-filter: blur(10px);
+    border: 1px solid rgba(255, 255, 255, 0.1);
     margin: 7px;
     border-radius: 17px;
     display: flex;
     justify-content: space-between;
+    transition: all 0.3s ease;
 }
 
 .tile:hover {
-    transition: cubic-bezier(0.07, 1.41, 0.82, 1.41) 0.2s;
+    background: rgba(37, 37, 37, 0.6);
+    border-color: rgba(255, 255, 255, 0.2);
     transform: scale(1.02);
+    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3);
 }
 
 .tile-share-button {
@@ -60,7 +109,16 @@ header {
     width: 40px;
     height: 40px;
     border-radius: 20px;
-    background-color: rgb(52, 52, 52);
+    background: rgba(52, 52, 52, 0.5);
+    backdrop-filter: blur(5px);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+.tile-share-button:hover {
+    background: rgba(52, 52, 52, 0.8);
+    transform: scale(1.1);
 }
 
 .tile-share-button svg {
@@ -73,10 +131,14 @@ header {
     width: 200px;
     border-radius: 100px;
     overflow: hidden;
+    border: 3px solid rgba(255, 255, 255, 0.1);
+    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3);
 }
 
 .image-container img {
     height: 100%;
+    width: 100%;
+    object-fit: cover;
 }
 
 .icon {
@@ -103,7 +165,9 @@ header {
     bottom: 110%;
     left: 50%;
     transform: translateX(-50%);
-    background-color: rgb(20, 20, 20);
+    background: rgba(20, 20, 20, 0.95);
+    backdrop-filter: blur(10px);
+    border: 1px solid rgba(255, 255, 255, 0.1);
     color: rgb(240, 240, 240);
     padding: 6px 10px;
     border-radius: 8px;
@@ -122,11 +186,13 @@ header {
 h1 {
     font-size: 20px;
     margin-bottom: 2px;
+    text-shadow: 0 2px 10px rgba(0, 0, 0, 0.5);
 }
 
 h2 {
     font-size: 12px;
     margin-bottom: 2px;
+    text-shadow: 0 2px 10px rgba(0, 0, 0, 0.5);
 }
 
 .distance {
