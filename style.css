@@ -77,6 +77,31 @@ header {
     height: 28px;
 }
 
+.twitter {
+    position: relative;
+}
+
+.twitter::after {
+    content: "No I won't call it X";
+    position: absolute;
+    bottom: 110%;
+    left: 50%;
+    transform: translateX(-50%);
+    background-color: rgb(20, 20, 20);
+    color: rgb(240, 240, 240);
+    padding: 6px 10px;
+    border-radius: 8px;
+    font-size: 12px;
+    white-space: nowrap;
+    opacity: 0;
+    pointer-events: none;
+    transition: opacity 0.2s ease, transform 0.2s ease;
+}
+
+.twitter:hover::after {
+    opacity: 1;
+    transform: translateX(-50%) translateY(-4px);
+}
 
 h1 {
     font-size: 20px;
