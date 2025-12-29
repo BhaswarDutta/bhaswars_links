@@ -126,6 +126,10 @@ h1 {
 
 h2 {
     font-size: 12px;
+    margin-bottom: 2px;
+}
+
+.distance {
     margin-bottom: 30px;
 }
 
